@@ -5,7 +5,7 @@
  * Plugin URI: http://hogash.com
  * Description: This plugin is just an example of how you can add a new element to Kallyas Pagebuilder.
  * Version: 1.0.0
- * Author: Balasa Sorin Stefan
+ * Author: Hogash
  * Author URI: http://themefuzz.com
  * License: GPL2
  */
@@ -62,6 +62,7 @@ class Zn_My_Kallyas_Element_Plugin_Demo{
 		$this->url     = plugin_dir_url( __FILE__ );
 		$this->path    = plugin_dir_path( __FILE__ );
 
+		add_filter(  'zn_pb_dirs', array( $this, 'register_elements_dir' ) );
 		add_action( 'after_setup_theme', array( $this, 'init_plugin' ) );
 		load_plugin_textdomain('my-kallyas-element-demo', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
@@ -73,9 +74,6 @@ class Zn_My_Kallyas_Element_Plugin_Demo{
 	function init_plugin(){
 		if( ! function_exists( 'ZNPB' ) ){
 			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
-		}
-		else{
-			add_filter(  'zn_pb_dirs', array( $this, 'register_elements_dir' ) );
 		}
 	}
 
